@@ -1,1 +1,72 @@
-LyogR0VUIC9wYXkg4oCUIG9uZS1vZmYgY2hlY2tvdXQgbGlua3MgZm9yIGN1c3RvbSBvcmRlcnMuCiAqCiAqIEV2YW4gdGV4dHMgYSBidXllciBhIGxpbmsgbGlrZToKICogICBodHRwczovL2V2YW4tYi1ldGNoZW4ucGFnZXMuZGV2L3BheT90b2tlbj1TRUNSRVQmYW1vdW50X2NlbnRzPTI3NTAwJmxhYmVsPUN1c3RvbSttaXJyb3IrZm9yK0plc3MKICogVGhlIGJ1eWVyIGxhbmRzIHN0cmFpZ2h0IG9uIFN0cmlwZSBjaGVja291dC4gTm8gc2VwYXJhdGUgc2hpcHBpbmcgbGluZSDigJQKICogY3VzdG9tIHF1b3RlcyBhbHJlYWR5IGluY2x1ZGUgc2hpcHBpbmcgaW4gdGhlIHRvdGFsLgogKgogKiBFbnYgdmFycyAoc2V0IGluIHRoZSBDbG91ZGZsYXJlIFBhZ2VzIHByb2plY3Qgc2V0dGluZ3MpOgogKiAgIFNUUklQRV9TRUNSRVRfS0VZIOKAlCBTdHJpcGUgcmVzdHJpY3RlZCBzZWNyZXQga2V5IChDaGVja291dCBTZXNzaW9uczogd3JpdGUpLgogKiAgIFBBWV9MSU5LX1RPS0VOICAgIOKAlCBzaGFyZWQgc2VjcmV0OyBvbmx5IGxpbmtzIGNhcnJ5aW5nIGl0IHdvcmsuCiAqICAgICAgICAgICAgICAgICAgICAgICBNYWtlIGl0IGxvbmcgYW5kIHJhbmRvbSwgZS5nLiBgb3BlbnNzbCByYW5kIC1oZXggMjRgLgogKi8KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBvblJlcXVlc3RHZXQoY29udGV4dCkgewogIGNvbnN0IHsgcmVxdWVzdCwgZW52IH0gPSBjb250ZXh0OwogIGNvbnN0IHVybCA9IG5ldyBVUkwocmVxdWVzdC51cmwpOwogIGNvbnN0IHRva2VuID0gdXJsLnNlYXJjaFBhcmFtcy5nZXQoInRva2VuIikgfHwgIiI7CiAgY29uc3QgYW1vdW50UmF3ID0gdXJsLnNlYXJjaFBhcmFtcy5nZXQoImFtb3VudF9jZW50cyIpIHx8ICIiOwogIGNvbnN0IGxhYmVsID0gKHVybC5zZWFyY2hQYXJhbXMuZ2V0KCJsYWJlbCIpIHx8ICJDdXN0b20gb3JkZXIiKS5zbGljZSgwLCAxMjApOwoKICBpZiAoIWVudi5QQVlfTElOS19UT0tFTiB8fCB0b2tlbiAhPT0gZW52LlBBWV9MSU5LX1RPS0VOKSB7CiAgICByZXR1cm4gbmV3IFJlc3BvbnNlKCJCYWQgbGluay4iLCB7IHN0YXR1czogNDAwIH0pOwogIH0KCiAgY29uc3QgYW1vdW50ID0gTnVtYmVyKGFtb3VudFJhdyk7CiAgaWYgKCFOdW1iZXIuaXNJbnRlZ2VyKGFtb3VudCkgfHwgYW1vdW50IDw9IDAgfHwgYW1vdW50ID4gMTAwMDAwMCkgewogICAgcmV0dXJuIG5ldyBSZXNwb25zZSgiQmFkIGFtb3VudC4iLCB7IHN0YXR1czogNDAwIH0pOwogIH0KCiAgaWYgKCFlbnYuU1RSSVBFX1NFQ1JFVF9LRVkpIHsKICAgIHJldHVybiBuZXcgUmVzcG9uc2UoIkNoZWNrb3V0IGlzIG5vdCBjb25maWd1cmVkIHlldC4iLCB7IHN0YXR1czogNTAyIH0pOwogIH0KCiAgY29uc3QgcGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcygpOwogIHBhcmFtcy5zZXQoIm1vZGUiLCAicGF5bWVudCIpOwogIHBhcmFtcy5zZXQoImxpbmVfaXRlbXNbMF1bcHJpY2VfZGF0YV1bY3VycmVuY3ldIiwgInVzZCIpOwogIHBhcmFtcy5zZXQoImxpbmVfaXRlbXNbMF1bcHJpY2VfZGF0YV1bcHJvZHVjdF9kYXRhXVtuYW1lXSIsIGxhYmVsKTsKICBwYXJhbXMuc2V0KCJsaW5lX2l0ZW1zWzBdW3ByaWNlX2RhdGFdW3VuaXRfYW1vdW50XSIsIFN0cmluZyhhbW91bnQpKTsKICBwYXJhbXMuc2V0KCJsaW5lX2l0ZW1zWzBdW3F1YW50aXR5XSIsICIxIik7CiAgcGFyYW1zLnNldCgic3VjY2Vzc191cmwiLCAiaHR0cHM6Ly9ldmFuLWItZXRjaGVuLnBhZ2VzLmRldi90aGFua3MuaHRtbCIpOwogIHBhcmFtcy5zZXQoImNhbmNlbF91cmwiLCAiaHR0cHM6Ly9ldmFuLWItZXRjaGVuLnBhZ2VzLmRldi9nYWxsZXJ5Lmh0bWwiKTsKICBwYXJhbXMuc2V0KCJzaGlwcGluZ19hZGRyZXNzX2NvbGxlY3Rpb25bYWxsb3dlZF9jb3VudHJpZXNdWzBdIiwgIlVTIik7CgogIGxldCByZXNwOwogIHRyeSB7CiAgICByZXNwID0gYXdhaXQgZmV0Y2goImh0dHBzOi8vYXBpLnN0cmlwZS5jb20vdjEvY2hlY2tvdXQvc2Vzc2lvbnMiLCB7CiAgICAgIG1ldGhvZDogIlBPU1QiLAogICAgICBoZWFkZXJzOiB7CiAgICAgICAgLy8gU3RyaXBlIHVzZXMgSFRUUCBCYXNpYyBhdXRoOiBzZWNyZXQga2V5IGFzIHVzZXJuYW1lLCBibGFuayBwYXNzd29yZC4KICAgICAgICBBdXRob3JpemF0aW9uOiAiQmFzaWMgIiArIGJ0b2EoZW52LlNUUklQRV9TRUNSRVRfS0VZICsgIjoiKSwKICAgICAgICAiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL3gtd3d3LWZvcm0tdXJsZW5jb2RlZCIsCiAgICAgIH0sCiAgICAgIGJvZHk6IHBhcmFtcy50b1N0cmluZygpLAogICAgfSk7CiAgfSBjYXRjaCAoZSkgewogICAgcmV0dXJuIG5ldyBSZXNwb25zZSgiQ291bGQgbm90IHJlYWNoIHRoZSBwYXltZW50IHNlcnZpY2UuIFBsZWFzZSB0cnkgYWdhaW4uIiwgewogICAgICBzdGF0dXM6IDUwMiwKICAgIH0pOwogIH0KCiAgbGV0IGRhdGEgPSB7fTsKICB0cnkgewogICAgZGF0YSA9IGF3YWl0IHJlc3AuanNvbigpOwogIH0gY2F0Y2ggKGUpIHsKICAgIGRhdGEgPSB7fTsKICB9CgogIGlmICghcmVzcC5vayB8fCAhZGF0YS51cmwpIHsKICAgIHJldHVybiBuZXcgUmVzcG9uc2UoIlBheW1lbnQgc2V0dXAgZmFpbGVkLiBQbGVhc2UgdHJ5IGFnYWluLiIsIHsgc3RhdHVzOiA1MDIgfSk7CiAgfQogIHJldHVybiBSZXNwb25zZS5yZWRpcmVjdChkYXRhLnVybCwgMzAyKTsKfQo=
+/* GET /pay — one-off checkout links for custom orders.
+ *
+ * Evan texts a buyer a link like:
+ *   https://evan-b-etchen.pages.dev/pay?token=SECRET&amount_cents=27500&label=Custom+mirror+for+Jess
+ * The buyer lands straight on Stripe checkout. No separate shipping line —
+ * custom quotes already include shipping in the total.
+ *
+ * Env vars (set in the Cloudflare Pages project settings):
+ *   STRIPE_SECRET_KEY — Stripe restricted secret key (Checkout Sessions: write).
+ *   PAY_LINK_TOKEN    — shared secret; only links carrying it work.
+ *                       Make it long and random, e.g. `openssl rand -hex 24`.
+ */
+
+export async function onRequestGet(context) {
+  const { request, env } = context;
+  const url = new URL(request.url);
+  const token = url.searchParams.get("token") || "";
+  const amountRaw = url.searchParams.get("amount_cents") || "";
+  const label = (url.searchParams.get("label") || "Custom order").slice(0, 120);
+
+  if (!env.PAY_LINK_TOKEN || token !== env.PAY_LINK_TOKEN) {
+    return new Response("Bad link.", { status: 400 });
+  }
+
+  const amount = Number(amountRaw);
+  if (!Number.isInteger(amount) || amount <= 0 || amount > 1000000) {
+    return new Response("Bad amount.", { status: 400 });
+  }
+
+  if (!env.STRIPE_SECRET_KEY) {
+    return new Response("Checkout is not configured yet.", { status: 502 });
+  }
+
+  const params = new URLSearchParams();
+  params.set("mode", "payment");
+  params.set("line_items[0][price_data][currency]", "usd");
+  params.set("line_items[0][price_data][product_data][name]", label);
+  params.set("line_items[0][price_data][unit_amount]", String(amount));
+  params.set("line_items[0][quantity]", "1");
+  params.set("success_url", "https://evan-b-etchen.pages.dev/thanks.html");
+  params.set("cancel_url", "https://evan-b-etchen.pages.dev/gallery.html");
+  params.set("shipping_address_collection[allowed_countries][0]", "US");
+
+  let resp;
+  try {
+    resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+      method: "POST",
+      headers: {
+        // Stripe uses HTTP Basic auth: secret key as username, blank password.
+        Authorization: "Basic " + btoa(env.STRIPE_SECRET_KEY + ":"),
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: params.toString(),
+    });
+  } catch (e) {
+    return new Response("Could not reach the payment service. Please try again.", {
+      status: 502,
+    });
+  }
+
+  let data = {};
+  try {
+    data = await resp.json();
+  } catch (e) {
+    data = {};
+  }
+
+  if (!resp.ok || !data.url) {
+    return new Response("Payment setup failed. Please try again.", { status: 502 });
+  }
+  return Response.redirect(data.url, 302);
+}

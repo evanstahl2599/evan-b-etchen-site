@@ -1,1 +1,107 @@
-LyogUE9TVCAvYXBpL2NoZWNrb3V0IOKAlCBjcmVhdGUgYSBTdHJpcGUgQ2hlY2tvdXQgU2Vzc2lvbiBmb3IgYSBjYXRhbG9nIHBpZWNlLgogKgogKiBFbnYgdmFycyAoc2V0IGluIHRoZSBDbG91ZGZsYXJlIFBhZ2VzIHByb2plY3Qgc2V0dGluZ3MpOgogKiAgIFNUUklQRV9TRUNSRVRfS0VZIOKAlCBTdHJpcGUgcmVzdHJpY3RlZCBzZWNyZXQga2V5IChDaGVja291dCBTZXNzaW9uczogd3JpdGUpLgogKgogKiBSZXF1ZXN0IGJvZHkgKEpTT04pOiB7ICJwaWVjZV9pZCI6ICI8Y2F0YWxvZyBpZD4iLCAicmVmZXJyYWxfY29kZSI6ICI8b3B0aW9uYWw+IiB9CiAqIFN1Y2Nlc3M6IDIwMCB7ICJ1cmwiOiAiPHN0cmlwZSBjaGVja291dCB1cmw+IiB9CiAqIEVycm9yczogNDAwIHVua25vd24gcGllY2UgLyBiYWQgYm9keSwgNTAyIHBheW1lbnQgc2VydmljZSBwcm9ibGVtLgogKi8KCmNvbnN0IENBVEFMT0cgPSB7CiAgInZpc2lvbi1vZi1mZWFyIjogeyBuYW1lOiAiQSBWaXNpb24gb2YgRmVhciIsIGFtb3VudDogNDAwMDAgfSwKICAidG9vLWNsb3NlLXRvLXRoZS1zdW4iOiB7IG5hbWU6ICJGb3IgSSBGbGV3IFRvbyBDbG9zZSB0byB0aGUgU3VuIiwgYW1vdW50OiA0MDAwMCB9LAogICJnYXJkZW4tb2YtdGhlLWRhbW5lZCI6IHsgbmFtZTogIkdhcmRlbiBvZiB0aGUgRGFtbmVkIiwgYW1vdW50OiAyNTAwMCB9LAogICJkYW5nZXItaGlkZGVuLXdpdGhpbiI6IHsgbmFtZTogIlRoZSBEYW5nZXIgSGlkZGVuIFdpdGhpbiIsIGFtb3VudDogMjUwMDAgfSwKICAiZmF0YWwtYXR0cmFjdGlvbiI6IHsgbmFtZTogIkEgRmF0YWwgQXR0cmFjdGlvbiIsIGFtb3VudDogMjUwMDAgfSwKICAiZ290aGljLWRlY29yLTFvZjEiOiB7IG5hbWU6ICJIYW5kLUV0Y2hlZCAxIG9mIDEgR290aGljIERlY29yIiwgYW1vdW50OiAxNTAwMCB9LAp9OwoKLy8gVE9ETyAoRXZhbik6IHNldCB0aGUgcmVhbCBVUFMgR3JvdW5kIGZsYXQgZmVlIGluIGNlbnRzIGFmdGVyIHJ1bm5pbmcKLy8gUGlyYXRlIFNoaXAgcXVvdGVzLiAwID0gZnJlZSBzaGlwcGluZyB1bnRpbCB5b3Ugc2V0IGEgcmVhbCBudW1iZXIuCmNvbnN0IFNISVBQSU5HX1NUQU5EQVJEX0NFTlRTID0gMDsKCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBvblJlcXVlc3RQb3N0KGNvbnRleHQpIHsKICBjb25zdCB7IHJlcXVlc3QsIGVudiB9ID0gY29udGV4dDsKCiAgbGV0IGJvZHkgPSBudWxsOwogIHRyeSB7CiAgICBib2R5ID0gYXdhaXQgcmVxdWVzdC5qc29uKCk7CiAgfSBjYXRjaCAoZSkgewogICAgcmV0dXJuIGpzb24oeyBlcnJvcjogIkludmFsaWQgcmVxdWVzdC4iIH0sIDQwMCk7CiAgfQoKICBjb25zdCBwaWVjZSA9IGJvZHkgJiYgQ0FUQUxPR1tib2R5LnBpZWNlX2lkXTsKICBpZiAoIXBpZWNlKSB7CiAgICByZXR1cm4ganNvbih7IGVycm9yOiAiVW5rbm93biBwaWVjZS4iIH0sIDQwMCk7CiAgfQoKICBjb25zdCByZWYgPQogICAgYm9keSAmJiB0eXBlb2YgYm9keS5yZWZlcnJhbF9jb2RlID09PSAic3RyaW5nIgogICAgICA/IGJvZHkucmVmZXJyYWxfY29kZS50cmltKCkudG9VcHBlckNhc2UoKQogICAgICA6ICIiOwoKICBpZiAoIWVudi5TVFJJUEVfU0VDUkVUX0tFWSkgewogICAgcmV0dXJuIGpzb24oeyBlcnJvcjogIkNoZWNrb3V0IGlzIG5vdCBjb25maWd1cmVkIHlldC4iIH0sIDUwMik7CiAgfQoKICBjb25zdCBwYXJhbXMgPSBuZXcgVVJMU2VhcmNoUGFyYW1zKCk7CiAgcGFyYW1zLnNldCgibW9kZSIsICJwYXltZW50Iik7CiAgcGFyYW1zLnNldCgibGluZV9pdGVtc1swXVtwcmljZV9kYXRhXVtjdXJyZW5jeV0iLCAidXNkIik7CiAgcGFyYW1zLnNldCgibGluZV9pdGVtc1swXVtwcmljZV9kYXRhXVtwcm9kdWN0X2RhdGFdW25hbWVdIiwgcGllY2UubmFtZSk7CiAgcGFyYW1zLnNldCgibGluZV9pdGVtc1swXVtwcmljZV9kYXRhXVt1bml0X2Ftb3VudF0iLCBTdHJpbmcocGllY2UuYW1vdW50KSk7CiAgcGFyYW1zLnNldCgibGluZV9pdGVtc1swXVtxdWFudGl0eV0iLCAiMSIpOwogIGlmIChyZWYpIHsKICAgIHBhcmFtcy5zZXQoImNsaWVudF9yZWZlcmVuY2VfaWQiLCByZWYpOwogIH0KICBwYXJhbXMuc2V0KCJzdWNjZXNzX3VybCIsICJodHRwczovL2V2YW4tYi1ldGNoZW4ucGFnZXMuZGV2L3RoYW5rcy5odG1sIik7CiAgcGFyYW1zLnNldCgiY2FuY2VsX3VybCIsICJodHRwczovL2V2YW4tYi1ldGNoZW4ucGFnZXMuZGV2L2dhbGxlcnkuaHRtbCIpOwogIHBhcmFtcy5zZXQoInNoaXBwaW5nX2FkZHJlc3NfY29sbGVjdGlvblthbGxvd2VkX2NvdW50cmllc11bMF0iLCAiVVMiKTsKICBwYXJhbXMuc2V0KCJzaGlwcGluZ19vcHRpb25zWzBdW3NoaXBwaW5nX3JhdGVfZGF0YV1bdHlwZV0iLCAiZml4ZWRfYW1vdW50Iik7CiAgcGFyYW1zLnNldCgKICAgICJzaGlwcGluZ19vcHRpb25zWzBdW3NoaXBwaW5nX3JhdGVfZGF0YV1bZml4ZWRfYW1vdW50XVthbW91bnRdIiwKICAgIFN0cmluZyhTSElQUElOR19TVEFOREFSRF9DRU5UUykKICApOwogIHBhcmFtcy5zZXQoInNoaXBwaW5nX29wdGlvbnNbMF1bc2hpcHBpbmdfcmF0ZV9kYXRhXVtmaXhlZF9hbW91bnRdW2N1cnJlbmN5XSIsICJ1c2QiKTsKICBwYXJhbXMuc2V0KCJzaGlwcGluZ19vcHRpb25zWzBdW3NoaXBwaW5nX3JhdGVfZGF0YV1bZGlzcGxheV9uYW1lXSIsICJVUFMgR3JvdW5kIHNoaXBwaW5nIik7CgogIGxldCByZXNwOwogIHRyeSB7CiAgICByZXNwID0gYXdhaXQgZmV0Y2goImh0dHBzOi8vYXBpLnN0cmlwZS5jb20vdjEvY2hlY2tvdXQvc2Vzc2lvbnMiLCB7CiAgICAgIG1ldGhvZDogIlBPU1QiLAogICAgICBoZWFkZXJzOiB7CiAgICAgICAgLy8gU3RyaXBlIHVzZXMgSFRUUCBCYXNpYyBhdXRoOiBzZWNyZXQga2V5IGFzIHVzZXJuYW1lLCBibGFuayBwYXNzd29yZC4KICAgICAgICBBdXRob3JpemF0aW9uOiAiQmFzaWMgIiArIGJ0b2EoZW52LlNUUklQRV9TRUNSRVRfS0VZICsgIjoiKSwKICAgICAgICAiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL3gtd3d3LWZvcm0tdXJsZW5jb2RlZCIsCiAgICAgIH0sCiAgICAgIGJvZHk6IHBhcmFtcy50b1N0cmluZygpLAogICAgfSk7CiAgfSBjYXRjaCAoZSkgewogICAgcmV0dXJuIGpzb24oeyBlcnJvcjogIkNvdWxkIG5vdCByZWFjaCB0aGUgcGF5bWVudCBzZXJ2aWNlLiBQbGVhc2UgdHJ5IGFnYWluLiIgfSwgNTAyKTsKICB9CgogIGxldCBkYXRhID0ge307CiAgdHJ5IHsKICAgIGRhdGEgPSBhd2FpdCByZXNwLmpzb24oKTsKICB9IGNhdGNoIChlKSB7CiAgICBkYXRhID0ge307CiAgfQoKICBpZiAoIXJlc3Aub2spIHsKICAgIGNvbnN0IG1zZyA9CiAgICAgIChkYXRhICYmIGRhdGEuZXJyb3IgJiYgZGF0YS5lcnJvci5tZXNzYWdlKSB8fAogICAgICAiUGF5bWVudCBzZXR1cCBmYWlsZWQuIFBsZWFzZSB0cnkgYWdhaW4uIjsKICAgIHJldHVybiBqc29uKHsgZXJyb3I6IG1zZyB9LCA1MDIpOwogIH0KICBpZiAoIWRhdGEudXJsKSB7CiAgICByZXR1cm4ganNvbih7IGVycm9yOiAiUGF5bWVudCBzZXR1cCBmYWlsZWQuIFBsZWFzZSB0cnkgYWdhaW4uIiB9LCA1MDIpOwogIH0KICByZXR1cm4ganNvbih7IHVybDogZGF0YS51cmwgfSwgMjAwKTsKfQoKZnVuY3Rpb24ganNvbihvYmosIHN0YXR1cykgewogIHJldHVybiBuZXcgUmVzcG9uc2UoSlNPTi5zdHJpbmdpZnkob2JqKSwgewogICAgc3RhdHVzOiBzdGF0dXMsCiAgICBoZWFkZXJzOiB7ICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiIgfSwKICB9KTsKfQo=
+/* POST /api/checkout — create a Stripe Checkout Session for a catalog piece.
+ *
+ * Env vars (set in the Cloudflare Pages project settings):
+ *   STRIPE_SECRET_KEY — Stripe restricted secret key (Checkout Sessions: write).
+ *
+ * Request body (JSON): { "piece_id": "<catalog id>", "referral_code": "<optional>" }
+ * Success: 200 { "url": "<stripe checkout url>" }
+ * Errors: 400 unknown piece / bad body, 502 payment service problem.
+ */
+
+const CATALOG = {
+  "vision-of-fear": { name: "A Vision of Fear", amount: 40000 },
+  "too-close-to-the-sun": { name: "For I Flew Too Close to the Sun", amount: 40000 },
+  "garden-of-the-damned": { name: "Garden of the Damned", amount: 25000 },
+  "danger-hidden-within": { name: "The Danger Hidden Within", amount: 25000 },
+  "fatal-attraction": { name: "A Fatal Attraction", amount: 25000 },
+  "gothic-decor-1of1": { name: "Hand-Etched 1 of 1 Gothic Decor", amount: 15000 },
+};
+
+// TODO (Evan): set the real UPS Ground flat fee in cents after running
+// Pirate Ship quotes. 0 = free shipping until you set a real number.
+const SHIPPING_STANDARD_CENTS = 0;
+
+export async function onRequestPost(context) {
+  const { request, env } = context;
+
+  let body = null;
+  try {
+    body = await request.json();
+  } catch (e) {
+    return json({ error: "Invalid request." }, 400);
+  }
+
+  const piece = body && CATALOG[body.piece_id];
+  if (!piece) {
+    return json({ error: "Unknown piece." }, 400);
+  }
+
+  const ref =
+    body && typeof body.referral_code === "string"
+      ? body.referral_code.trim().toUpperCase()
+      : "";
+
+  if (!env.STRIPE_SECRET_KEY) {
+    return json({ error: "Checkout is not configured yet." }, 502);
+  }
+
+  const params = new URLSearchParams();
+  params.set("mode", "payment");
+  params.set("line_items[0][price_data][currency]", "usd");
+  params.set("line_items[0][price_data][product_data][name]", piece.name);
+  params.set("line_items[0][price_data][unit_amount]", String(piece.amount));
+  params.set("line_items[0][quantity]", "1");
+  if (ref) {
+    params.set("client_reference_id", ref);
+  }
+  params.set("success_url", "https://evan-b-etchen.pages.dev/thanks.html");
+  params.set("cancel_url", "https://evan-b-etchen.pages.dev/gallery.html");
+  params.set("shipping_address_collection[allowed_countries][0]", "US");
+  params.set("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
+  params.set(
+    "shipping_options[0][shipping_rate_data][fixed_amount][amount]",
+    String(SHIPPING_STANDARD_CENTS)
+  );
+  params.set("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "usd");
+  params.set("shipping_options[0][shipping_rate_data][display_name]", "UPS Ground shipping");
+
+  let resp;
+  try {
+    resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+      method: "POST",
+      headers: {
+        // Stripe uses HTTP Basic auth: secret key as username, blank password.
+        Authorization: "Basic " + btoa(env.STRIPE_SECRET_KEY + ":"),
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: params.toString(),
+    });
+  } catch (e) {
+    return json({ error: "Could not reach the payment service. Please try again." }, 502);
+  }
+
+  let data = {};
+  try {
+    data = await resp.json();
+  } catch (e) {
+    data = {};
+  }
+
+  if (!resp.ok) {
+    const msg =
+      (data && data.error && data.error.message) ||
+      "Payment setup failed. Please try again.";
+    return json({ error: msg }, 502);
+  }
+  if (!data.url) {
+    return json({ error: "Payment setup failed. Please try again." }, 502);
+  }
+  return json({ url: data.url }, 200);
+}
+
+function json(obj, status) {
+  return new Response(JSON.stringify(obj), {
+    status: status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
