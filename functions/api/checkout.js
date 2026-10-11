@@ -17,9 +17,8 @@ const CATALOG = {
   "gothic-decor-1of1": { name: "Hand-Etched 1 of 1 Gothic Decor", amount: 15000 },
 };
 
-// TODO (Evan): set the real UPS Ground flat fee in cents after running
-// Pirate Ship quotes. 0 = free shipping until you set a real number.
-const SHIPPING_STANDARD_CENTS = 0;
+// UPS Ground flat fee in cents. Set 2026-10-11 per Evan: customers pay shipping.
+const SHIPPING_STANDARD_CENTS = 2500;
 
 export async function onRequestPost(context) {
   const { request, env } = context;
