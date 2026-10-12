@@ -11,8 +11,8 @@
 const CATALOG = {
   "vision-of-fear": { name: "A Vision of Fear", amount: 40000 },
   "too-close-to-the-sun": { name: "For I Flew Too Close to the Sun", amount: 40000 },
-  "garden-of-the-damned": { name: "Garden of the Damned", amount: 25000 },
-  "danger-hidden-within": { name: "The Danger Hidden Within", amount: 25000 },
+  "garden-of-the-damned": { name: "Garden of the Damned", amount: 15000 },
+  "danger-hidden-within": { name: "The Danger Hidden Within", amount: 15000 },
   "fatal-attraction": { name: "A Fatal Attraction", amount: 25000 },
   "gothic-decor-1of1": { name: "Hand-Etched 1 of 1 Gothic Decor", amount: 15000 },
 };
