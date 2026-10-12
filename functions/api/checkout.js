@@ -15,6 +15,7 @@ const CATALOG = {
   "danger-hidden-within": { name: "The Danger Hidden Within", amount: 15000 },
   "fatal-attraction": { name: "A Fatal Attraction", amount: 25000 },
   "gothic-decor-1of1": { name: "Hand-Etched 1 of 1 Gothic Decor", amount: 15000 },
+  "spiderweb-pocket-mirror": { name: "Spiderweb Pocket Mirror", amount: 1750, freeShipping: true },
 };
 
 // UPS Ground flat fee in cents. Set 2026-10-11 per Evan: customers pay shipping.
@@ -56,13 +57,17 @@ export async function onRequestPost(context) {
   params.set("success_url", "https://evan-b-etchen.pages.dev/thanks.html");
   params.set("cancel_url", "https://evan-b-etchen.pages.dev/gallery.html");
   params.set("shipping_address_collection[allowed_countries][0]", "US");
+  const shippingCents = piece.freeShipping ? 0 : SHIPPING_STANDARD_CENTS;
   params.set("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
   params.set(
     "shipping_options[0][shipping_rate_data][fixed_amount][amount]",
-    String(SHIPPING_STANDARD_CENTS)
+    String(shippingCents)
   );
   params.set("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "usd");
-  params.set("shipping_options[0][shipping_rate_data][display_name]", "UPS Ground shipping");
+  params.set(
+    "shipping_options[0][shipping_rate_data][display_name]",
+    piece.freeShipping ? "Shipping included" : "UPS Ground shipping"
+  );
 
   let resp;
   try {
