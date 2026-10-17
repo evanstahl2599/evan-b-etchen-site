@@ -13,7 +13,7 @@ const CATALOG = {
   "too-close-to-the-sun": { name: "For I Flew Too Close to the Sun", amount: 40000 },
   "garden-of-the-damned": { name: "Garden of the Damned", amount: 15000 },
   "danger-hidden-within": { name: "The Danger Hidden Within", amount: 15000 },
-  "fatal-attraction": { name: "A Fatal Attraction", amount: 25000 },
+  "fatal-attraction": { name: "A Fatal Attraction", amount: 15000 },
   "gothic-decor-1of1": { name: "Hand-Etched 1 of 1 Gothic Decor", amount: 15000 },
   "spiderweb-pocket-mirror": { name: "Spiderweb Pocket Mirror", amount: 1750, freeShipping: true },
 };
