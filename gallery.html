@@ -88,6 +88,12 @@ header{
 }
 .buy:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(141,67,255,.5)}
 button.buy{border:none;font:inherit;cursor:pointer}
+.pill{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);border:1px solid var(--line);border-radius:999px;padding:5px 12px;margin:0 0 14px;background:rgba(207,76,255,.07)}
+.sold-badge{position:absolute;top:14px;left:14px;z-index:2;background:#b3122e;color:#fff;font-size:12px;font-weight:800;letter-spacing:.18em;padding:7px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.live-wrap{padding-top:44px}
+.live-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.4vw,38px);margin:0 0 6px}
+.live-head p{color:var(--muted);margin:0;line-height:1.6;max-width:640px}
+#liveMsg{color:var(--faint);font-size:14.5px;padding:6px 0 0}
 .fineprint{padding:26px 0 8px;color:var(--faint);font-size:14px;line-height:1.7;max-width:700px}
 .sold h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(22px,3vw,30px);margin:0 0 6px}
 .sold-sub{color:var(--muted);margin:0 0 26px}
@@ -121,6 +127,15 @@ footer{margin-top:56px;border-top:1px solid rgba(207,76,255,.18);padding:34px 0 
     <div class="eyebrow">Available Work</div>
     <h1>Completed pieces, <em>for sale.</em></h1>
     <p>Every piece below is an original, hand-etched one of a kind. When a piece sells, it&rsquo;s gone. Purchases are handled securely through Stripe.</p>
+  </section>
+
+  <section class="live-wrap" id="liveSection" aria-label="Fresh off the bench">
+    <div class="live-head">
+      <h2>Fresh Off the Bench</h2>
+      <p>The newest finished pieces, straight from the workbench. One of one &mdash; when a piece sells, it&rsquo;s gone.</p>
+    </div>
+    <div class="grid" id="liveGrid" style="padding-top:22px"></div>
+    <p id="liveMsg">Loading the newest pieces&hellip;</p>
   </section>
 
   <section class="grid" aria-label="Pieces for sale">
@@ -238,6 +253,134 @@ footer{margin-top:56px;border-top:1px solid rgba(207,76,255,.18);padding:34px 0 
 </footer>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dfc3d78e62094555978064a7902220e3"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* Fresh Off the Bench — live catalog from Evan's "Add a New Piece" form Sheet.
+   Renders one card per form response. Buy buttons carry data-sheet-piece;
+   referral.js routes them to /api/checkout, which validates name + price
+   against this same Sheet server-side before creating a Stripe session. */
+(function () {
+  "use strict";
+  var CSV_URL = 'https://docs.google.com/spreadsheets/d/1OukbMm3cFDeAW0cQXFdU_jtWmTVAEODytRUwuBkB1wg/gviz/tq?tqx=out:csv&sheet=Form%20Responses%201';
+  var section = document.getElementById('liveSection');
+  var grid = document.getElementById('liveGrid');
+  var msg = document.getElementById('liveMsg');
+
+  function parseCSV(text) {
+    var rows = [], row = [], field = '', inQ = false, i, c;
+    for (i = 0; i < text.length; i++) {
+      c = text[i];
+      if (inQ) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; } else { inQ = false; }
+        } else { field += c; }
+      } else if (c === '"') { inQ = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else if (c !== '\r') { field += c; }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function esc(s) { return (s == null ? '' : String(s)).trim(); }
+
+  function driveId(url) {
+    if (!url) return null;
+    var m = url.match(/[?&]id=([\w-]{10,})/) || url.match(/\/d\/([\w-]{10,})/);
+    return m ? m[1] : null;
+  }
+
+  function photoURL(raw) {
+    var id = driveId(raw);
+    if (id) return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1000';
+    if (/^https?:\/\//i.test(raw)) return raw;
+    return '';
+  }
+
+  function fmtPrice(raw) {
+    var p = esc(raw).replace(/^\$\s*/, '');
+    if (!p) return '';
+    return '$' + p;
+  }
+
+  function hide() { section.style.display = 'none'; }
+
+  function card(item) {
+    var wrap = document.createElement('article');
+    wrap.className = 'listing';
+    var imgBox = document.createElement('div');
+    var url = photoURL(item.photo);
+    if (url) {
+      imgBox.className = 'listing-img';
+      imgBox.style.backgroundImage = 'url("' + url + '")';
+      imgBox.setAttribute('role', 'img');
+      imgBox.setAttribute('aria-label', item.name);
+    } else {
+      imgBox.className = 'listing-img soon';
+      var note = document.createElement('div');
+      note.className = 'soon-note';
+      var b = document.createElement('b'); b.textContent = 'Evan B Etchen';
+      note.appendChild(b);
+      note.appendChild(document.createTextNode('Photo coming soon'));
+      imgBox.appendChild(note);
+    }
+    if (item.sold) {
+      var badge = document.createElement('div');
+      badge.className = 'sold-badge'; badge.textContent = 'SOLD';
+      imgBox.appendChild(badge);
+    }
+    wrap.appendChild(imgBox);
+
+    var body = document.createElement('div');
+    body.className = 'listing-body';
+    var h = document.createElement('h3'); h.textContent = item.name; body.appendChild(h);
+    if (item.price) {
+      var pr = document.createElement('div');
+      pr.className = 'price'; pr.textContent = item.price; body.appendChild(pr);
+    }
+    if (item.desc) {
+      var de = document.createElement('p'); de.textContent = item.desc; body.appendChild(de);
+    }
+    if (item.cat) {
+      var cat = document.createElement('span');
+      cat.className = 'pill'; cat.textContent = item.cat; body.appendChild(cat);
+    }
+    if (!item.sold) {
+      var btn = document.createElement('button');
+      btn.className = 'buy'; btn.textContent = 'Buy now';
+      btn.setAttribute('data-sheet-piece', item.name);
+      body.appendChild(btn);
+    }
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  fetch(CSV_URL).then(function (r) {
+    if (!r.ok) throw new Error('sheet fetch ' + r.status);
+    return r.text();
+  }).then(function (text) {
+    var rows = parseCSV(text);
+    var items = [];
+    for (var i = 1; i < rows.length; i++) {
+      var r = rows[i];
+      if (!r.join('').trim()) continue;
+      var name = esc(r[1]);
+      if (!name) continue;
+      items.push({
+        name: name,
+        price: fmtPrice(r[2]),
+        desc: esc(r[3]),
+        photo: esc(r[4]),
+        cat: esc(r[5]),
+        sold: esc(r[6]).toLowerCase() === 'sold'
+      });
+    }
+    if (!items.length) { hide(); return; }
+    msg.textContent = '';
+    items.forEach(function (it) { grid.appendChild(card(it)); });
+  }).catch(function () { hide(); });
+})();
+</script>
 <script src="assets/referral.js"></script>
 </body>
 </html>

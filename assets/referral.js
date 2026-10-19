@@ -124,10 +124,16 @@
     goBtn.textContent = "Taking you to checkout\u2026";
     hint.textContent = "";
 
+    // Sheet pieces (from Evan's upload form) are named, not catalog IDs;
+    // the server validates name + price against the live Sheet.
+    var payload = pending.sheetPiece
+      ? { sheet_piece: pending.sheetPiece, referral_code: ref }
+      : { piece_id: pieceId, referral_code: ref };
+
     fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ piece_id: pieceId, referral_code: ref }),
+      body: JSON.stringify(payload),
     })
       .then(function (resp) {
         return resp.json().catch(function () { return {}; }).then(function (data) {
@@ -188,8 +194,14 @@
   document.addEventListener("click", function (e) {
     // Ignore clicks inside the popup itself.
     if (overlay.style.display === "flex" && overlay.contains(e.target)) return;
-    var el = e.target.closest ? e.target.closest("[data-piece],a[href]") : null;
+    var el = e.target.closest ? e.target.closest("[data-piece],[data-sheet-piece],a[href]") : null;
     if (!el) return;
+    var sheetPiece = el.getAttribute("data-sheet-piece");
+    if (sheetPiece) {
+      e.preventDefault();
+      open({ kind: "api", sheetPiece: sheetPiece });
+      return;
+    }
     var piece = el.getAttribute("data-piece");
     if (piece) {
       e.preventDefault();
