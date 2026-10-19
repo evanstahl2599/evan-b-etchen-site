@@ -61,7 +61,7 @@ header{
   border-bottom:1px solid rgba(207,76,255,.22);
 }
 .nav{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{font-family:var(--serif);font-size:21px;letter-spacing:.05em;font-weight:700;white-space:nowrap}
+.logo{font-family:'Pirata One','Cormorant Garamond',Georgia,serif;font-size:30px;letter-spacing:.04em;font-weight:400;white-space:nowrap}
 .logo span{color:var(--purple)}
 .navlinks{display:none}
 .start-mini{
@@ -186,6 +186,9 @@ footer{margin-top:48px;border-top:1px solid rgba(207,76,255,.18);padding:28px 0 
 }
 .tapbar a .ic{font-size:19px;line-height:1;color:var(--purple)}
 .tapbar a.mid{background:linear-gradient(180deg,rgba(141,67,255,.28),rgba(141,67,255,.10));color:#fff}
+.brandmark{font-family:'Pirata One','Cormorant Garamond',Georgia,serif;font-size:clamp(48px,12.5vw,92px);line-height:1.05;text-align:center;letter-spacing:.02em;padding:30px 16px 4px;color:var(--text)}
+.brandmark span{color:var(--purple)}
+.brandmark .rule{width:120px;height:3px;background:#ffcf4c;border-radius:2px;margin:10px auto 0}
 
 /* ---------- desktop widening ---------- */
 @media(min-width:760px){
@@ -227,6 +230,7 @@ footer{margin-top:48px;border-top:1px solid rgba(207,76,255,.18);padding:28px 0 
 
 <main id="top">
   <div class="hero">
+    <div class="brandmark" aria-label="Evan B Etchen">Evan B <span>Etchen</span><div class="rule"></div></div>
     <div class="wrap hero-grid">
       <div class="hero-img">
         <img src="assets/hero-skull-raven.webp" alt="Purple-lit hand-etched mirror: horned skull with a raven and roses">
