@@ -91,6 +91,7 @@ button.buy{border:none;font:inherit;cursor:pointer}
 .pill{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);border:1px solid var(--line);border-radius:999px;padding:5px 12px;margin:0 0 14px;background:rgba(207,76,255,.07)}
 .sold-badge{position:absolute;top:14px;left:14px;z-index:2;background:#b3122e;color:#fff;font-size:12px;font-weight:800;letter-spacing:.18em;padding:7px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.45)}
 .live-wrap{padding-top:44px}
+.wip-tag{color:var(--faint);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin:12px 0 4px}
 .live-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.4vw,38px);margin:0 0 6px}
 .live-head p{color:var(--muted);margin:0;line-height:1.6;max-width:640px}
 #liveMsg{color:var(--faint);font-size:14.5px;padding:6px 0 0}
@@ -136,6 +137,15 @@ footer{margin-top:56px;border-top:1px solid rgba(207,76,255,.18);padding:34px 0 
     </div>
     <div class="grid" id="liveGrid" style="padding-top:22px"></div>
     <p id="liveMsg">Loading the newest pieces&hellip;</p>
+  </section>
+
+  <section class="live-wrap" id="wipSection" aria-label="On the bench">
+    <div class="live-head">
+      <h2>On the Bench</h2>
+      <p>Works in progress, mid-etch. Not for sale yet &mdash; this is where pieces live before they&rsquo;re done. See something taking shape that you want? <a href="index.html#commissions" style="color:var(--purple);font-weight:600">Start a piece</a>.</p>
+    </div>
+    <div class="grid" id="wipGrid" style="padding-top:22px"></div>
+    <p id="wipMsg">Loading what&rsquo;s on the bench&hellip;</p>
   </section>
 
   <section class="grid" aria-label="Pieces for sale">
@@ -382,5 +392,111 @@ footer{margin-top:56px;border-top:1px solid rgba(207,76,255,.18);padding:34px 0 
 })();
 </script>
 <script src="assets/referral.js"></script>
+<script>
+/* On the Bench — live work-in-progress list from Evan's WIP form Sheet.
+   Separate form, separate Sheet, separate upload folder from the shop
+   catalog. No buy buttons: these pieces are not finished or for sale. */
+(function () {
+  "use strict";
+  var CSV_URL = 'https://docs.google.com/spreadsheets/d/1pbDrLScaZyTvpOZ2Fb1tIVDK-dkxVZ3taOxamg8cWAs/gviz/tq?tqx=out:csv&sheet=Form%20Responses%201';
+  var section = document.getElementById('wipSection');
+  var grid = document.getElementById('wipGrid');
+  var msg = document.getElementById('wipMsg');
+
+  function parseCSV(text) {
+    var rows = [], row = [], field = '', inQ = false, i, c;
+    for (i = 0; i < text.length; i++) {
+      c = text[i];
+      if (inQ) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; } else { inQ = false; }
+        } else { field += c; }
+      } else if (c === '"') { inQ = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else if (c !== '\r') { field += c; }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function esc(s) { return (s == null ? '' : String(s)).trim(); }
+
+  function driveId(url) {
+    if (!url) return null;
+    var m = url.match(/[?&]id=([\w-]{10,})/) || url.match(/\/d\/([\w-]{10,})/);
+    return m ? m[1] : null;
+  }
+
+  function photoURL(raw) {
+    var id = driveId(raw);
+    if (id) return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1000';
+    if (/^https?:\/\//i.test(raw)) return raw;
+    return '';
+  }
+
+  function hide() { section.style.display = 'none'; }
+
+  function card(item) {
+    var wrap = document.createElement('article');
+    wrap.className = 'listing';
+    var imgBox = document.createElement('div');
+    var url = photoURL(item.photo);
+    if (url) {
+      imgBox.className = 'listing-img';
+      imgBox.style.backgroundImage = 'url("' + url + '")';
+      imgBox.setAttribute('role', 'img');
+      imgBox.setAttribute('aria-label', item.name);
+    } else {
+      imgBox.className = 'listing-img soon';
+      var note = document.createElement('div');
+      note.className = 'soon-note';
+      var b = document.createElement('b'); b.textContent = 'Evan B Etchen';
+      note.appendChild(b);
+      note.appendChild(document.createTextNode('Photo coming soon'));
+      imgBox.appendChild(note);
+    }
+    wrap.appendChild(imgBox);
+
+    var body = document.createElement('div');
+    body.className = 'listing-body';
+    var h = document.createElement('h3'); h.textContent = item.name; body.appendChild(h);
+    var tag = document.createElement('div');
+    tag.className = 'wip-tag'; tag.textContent = 'In the works'; body.appendChild(tag);
+    if (item.notes) {
+      var de = document.createElement('p'); de.textContent = item.notes; body.appendChild(de);
+    }
+    if (item.cat) {
+      var cat = document.createElement('span');
+      cat.className = 'pill'; cat.textContent = item.cat; body.appendChild(cat);
+    }
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  fetch(CSV_URL).then(function (r) {
+    if (!r.ok) throw new Error('sheet fetch ' + r.status);
+    return r.text();
+  }).then(function (text) {
+    var rows = parseCSV(text);
+    var items = [];
+    for (var i = 1; i < rows.length; i++) {
+      var r = rows[i];
+      if (!r.join('').trim()) continue;
+      var name = esc(r[1]);
+      if (!name) continue;
+      items.push({
+        name: name,
+        notes: esc(r[2]),
+        photo: esc(r[3]),
+        cat: esc(r[4])
+      });
+    }
+    if (!items.length) { hide(); return; }
+    msg.textContent = '';
+    items.forEach(function (it) { grid.appendChild(card(it)); });
+  }).catch(function () { hide(); });
+})();
+</script>
 </body>
 </html>
