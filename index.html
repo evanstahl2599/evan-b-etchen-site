@@ -12,309 +12,226 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308090e'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23cf4cff' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
+
 :root{
   --bg:#08090e; --panel:#0d0f16; --panel2:#11131c; --line:#33253f;
-  --text:#f4f0f7; --muted:#a89fb1; --faint:#7d7484;
+  --text:#f4f0f7; --muted:#b3a8bc; --faint:#7d7484;
   --purple:#cf4cff; --purple2:#8d43ff; --purple-dim:rgba(207,76,255,.14);
-  --max:1180px; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',Arial,Helvetica,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:-apple-system,'Segoe UI',Inter,Arial,Helvetica,sans-serif;
+  --tapbar:64px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:96px}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{
-  margin:0;color:var(--text);font-family:var(--sans);
+  margin:0;color:var(--text);font-family:var(--sans);font-size:17px;
   background:
-    radial-gradient(1100px 480px at 78% -4%,rgba(141,67,255,.13),transparent 60%),
-    radial-gradient(900px 520px at 8% 42%,rgba(207,76,255,.07),transparent 60%),
-    radial-gradient(1000px 600px at 50% 110%,rgba(141,67,255,.06),transparent 60%),
+    radial-gradient(700px 340px at 85% -4%,rgba(141,67,255,.14),transparent 60%),
+    radial-gradient(700px 420px at 0% 45%,rgba(207,76,255,.06),transparent 60%),
     var(--bg);
   -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(var(--tapbar) + env(safe-area-inset-bottom) + 18px);
 }
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-img{max-width:100%}
-.container{width:min(var(--max),92vw);margin:0 auto}
+img{max-width:100%;display:block}
+.wrap{width:min(1180px,100% - 32px);margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--purple);font-weight:700}
+.eyebrow::before{content:"";display:inline-block;width:22px;height:2px;background:var(--purple);vertical-align:middle;margin-right:10px;border-radius:2px}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.08;margin:0}
+h2{font-size:clamp(32px,7.5vw,48px)}
+h2 em,h1 em{font-style:italic;background:linear-gradient(100deg,#e9b8ff,var(--purple) 55%,#9a5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+section{padding:40px 0 8px}
+.sec-head p{color:var(--muted);line-height:1.65;margin:12px 0 0;max-width:560px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:54px;padding:14px 24px;border-radius:999px;
+  font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--purple);cursor:pointer;text-align:center;
+}
+.btn-solid{background:linear-gradient(120deg,var(--purple2),var(--purple));color:#0b0612;box-shadow:0 8px 26px rgba(141,67,255,.35)}
+.btn-ghost{color:var(--text);background:rgba(207,76,255,.06)}
+.btn-block{width:100%}
+
 
 /* ---------- header ---------- */
 header{
-  position:sticky;top:0;z-index:40;
-  background:rgba(8,9,14,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(207,76,255,.20);
-  transition:box-shadow .3s ease;
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,9,14,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(207,76,255,.22);
 }
-header.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.45)}
-.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-.logo{font-family:var(--serif);font-size:24px;letter-spacing:.06em;font-weight:700;white-space:nowrap}
+.nav{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--serif);font-size:21px;letter-spacing:.05em;font-weight:700;white-space:nowrap}
 .logo span{color:var(--purple)}
-.navlinks{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
-.navlinks a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#d9d2de;position:relative;padding:6px 0}
-.navlinks a:not(.start)::after{
-  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;border-radius:2px;
-  background:linear-gradient(90deg,var(--purple),var(--purple2));transition:width .25s ease;
+.navlinks{display:none}
+.start-mini{
+  border:1px solid var(--purple);border-radius:999px;padding:10px 16px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;
+  box-shadow:0 0 16px rgba(207,76,255,.22);
 }
-.navlinks a:not(.start):hover{color:#fff}
-.navlinks a:not(.start):hover::after{width:100%}
-.start{
-  border:1px solid var(--purple);border-radius:999px;padding:11px 20px !important;color:#fff !important;
-  box-shadow:0 0 20px rgba(207,76,255,.22),inset 0 0 12px rgba(207,76,255,.08);
-  transition:.25s ease;
-}
-.start:hover{background:var(--purple-dim);box-shadow:0 0 28px rgba(207,76,255,.4)}
-.start::after{display:none}
-.mobile{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:9px;letter-spacing:.14em;font-size:12px;font-weight:700;cursor:pointer}
 
 /* ---------- hero ---------- */
-.hero{padding:52px 0 26px}
-.hero-shell{
-  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;
-  display:grid;grid-template-columns:1.05fr .95fr;min-height:600px;
-  background:
-    linear-gradient(92deg,rgba(6,7,12,.985) 0%,rgba(6,7,12,.94) 42%,rgba(6,7,12,.30) 78%,rgba(6,7,12,.12) 100%),
-    url("assets/hero-skull-raven.webp") right center/cover no-repeat;
-  box-shadow:0 30px 80px rgba(0,0,0,.5);
+.hero{padding:22px 0 6px}
+.hero-img{border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.hero-img img{width:100%;height:min(58vw,420px);object-fit:cover;object-position:center 32%}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,9,14,.72));pointer-events:none}
+.hero-badge{
+  position:absolute;left:14px;bottom:12px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  background:rgba(8,9,14,.72);border:1px solid rgba(207,76,255,.5);border-radius:999px;padding:7px 13px;backdrop-filter:blur(6px);
 }
-.hero-shell::after{
-  content:"";position:absolute;inset:0;pointer-events:none;border-radius:18px;
-  box-shadow:inset 0 0 120px rgba(8,9,14,.55);
-}
-.hero-copy{padding:64px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
-.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--purple);font-weight:700}
-.eyebrow::before{content:"";display:inline-block;width:26px;height:2px;background:var(--purple);vertical-align:middle;margin-right:12px;border-radius:2px}
-.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(44px,5.4vw,72px);line-height:1.06;margin:20px 0 26px;max-width:720px;letter-spacing:.01em}
-.hero h1 em{font-style:italic;background:linear-gradient(100deg,#e9b8ff,var(--purple) 55%,#9a5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-sub{color:var(--muted);font-size:17px;line-height:1.7;max-width:520px;margin:0 0 30px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  display:inline-block;padding:14px 26px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  border:1px solid var(--purple);transition:.25s ease;cursor:pointer;
-}
-.btn-solid{background:linear-gradient(120deg,var(--purple2),var(--purple));color:#0b0612;box-shadow:0 8px 28px rgba(141,67,255,.35)}
-.btn-solid:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(141,67,255,.5)}
-.btn-ghost{color:var(--text);background:rgba(207,76,255,.06)}
-.btn-ghost:hover{background:var(--purple-dim);transform:translateY(-2px)}
-button.btn{font:inherit}
+.hero-copy{padding:26px 2px 0}
+.hero h1{font-size:clamp(38px,10.5vw,68px);margin:16px 0 18px}
+.hero-sub{color:var(--muted);font-size:17px;line-height:1.7;margin:0 0 24px;max-width:540px}
+.hero-cta{display:grid;gap:12px}
 .how{
-  align-self:center;margin:56px 56px 56px 0;padding:6px 0 6px 46px;position:relative;z-index:1;
-  border-left:1px solid rgba(207,76,255,.35);max-width:520px;
+  margin-top:30px;border:1px solid var(--line);border-radius:16px;padding:24px 22px;
+  background:linear-gradient(160deg,rgba(141,67,255,.08),rgba(207,76,255,.02) 60%,transparent);
 }
-.how h2{font-family:var(--serif);font-size:30px;font-weight:600;margin:14px 0 4px}
-.how p{font-size:17.5px;line-height:1.75;margin:16px 0;color:#e6dfee}
+.how h3{font-family:var(--serif);font-size:27px;font-weight:600;margin:10px 0 6px}
+.how p{font-size:16.5px;line-height:1.7;margin:10px 0;color:#e6dfee}
 .how p strong{color:#fff}
-.motto{margin-top:22px;font-size:15px;letter-spacing:.06em;color:var(--muted)}
-.motto b{color:var(--purple);font-weight:700}
+.motto{margin-top:14px;font-size:14px;letter-spacing:.05em;color:var(--muted)}
+.motto b{color:var(--purple)}
 
-/* ---------- reveal on scroll ---------- */
-.reveal{opacity:1;transform:none}
-html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-html.js .reveal.in{opacity:1;transform:none}
-
-/* ---------- cards ---------- */
-.section{padding:44px 0}
-.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
-.section-head h2{font-family:var(--serif);font-size:clamp(34px,4vw,50px);font-weight:600;margin:12px 0 0}
-.section-head h2 em{font-style:italic;color:var(--purple)}
-.section-head p{color:var(--muted);max-width:420px;line-height:1.65;margin:0}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.card{
-  background:linear-gradient(180deg,#101220 0%,#0a0b11 100%);
-  border:1px solid var(--line);border-radius:14px;
-  min-height:440px;display:flex;flex-direction:column;overflow:hidden;
-  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;cursor:pointer;
+/* ---------- product cards ---------- */
+.pgrid{display:grid;gap:18px;margin-top:24px}
+.pcard{
+  background:linear-gradient(180deg,#101220,#0a0b11);
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
 }
-.card:hover{transform:translateY(-6px);border-color:#8a4aa8;box-shadow:0 22px 44px rgba(0,0,0,.45),0 0 0 1px rgba(207,76,255,.25)}
-.cardimg{height:225px;background-position:center;background-size:cover;transition:transform .5s ease;position:relative}
-.card:hover .cardimg{transform:scale(1.045)}
-.cardimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,9,14,.55))}
-.card:nth-child(1) .cardimg{background-image:url("assets/gallery-art.webp")}
-.card:nth-child(2) .cardimg{background-image:url("assets/concepts-art.webp")}
-.card:nth-child(3) .cardimg{background-image:url("assets/workshop-art.webp")}
-.card:nth-child(4) .cardimg{background-image:url("assets/hero-art.webp");background-position:30% 40%}
-.cardbody{padding:24px 24px 22px;display:flex;flex-direction:column;flex:1}
-.card small{color:var(--purple);letter-spacing:.26em;text-transform:uppercase;font-weight:700;font-size:11px}
-.card h3{font-family:var(--serif);font-size:28px;font-weight:600;margin:10px 0 0;line-height:1.15}
-.card p{color:var(--muted);line-height:1.6;font-size:15px;margin:10px 0 0}
-.arrow{
-  margin-top:auto;align-self:flex-end;width:44px;height:44px;border:1px solid rgba(207,76,255,.55);border-radius:50%;
-  display:grid;place-items:center;color:var(--purple);font-size:19px;transition:.25s ease;background:rgba(207,76,255,.05);
-}
-.card:hover .arrow{background:var(--purple);color:#0b0612;transform:translateX(3px)}
+.pcard img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.pbody{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pbody small{color:var(--purple);letter-spacing:.24em;text-transform:uppercase;font-weight:700;font-size:11px}
+.pbody h3{font-family:var(--serif);font-size:27px;font-weight:600;margin:0;line-height:1.15}
+.pbody p{color:var(--muted);line-height:1.6;font-size:15.5px;margin:0}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:auto;padding-top:12px}
+.price{font-family:var(--serif);font-size:30px;font-weight:700}
+.price small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.18em;color:var(--faint);font-weight:600}
+.prow .btn{min-height:50px;padding:12px 20px}
+.note-line{color:var(--faint);font-size:13.5px;line-height:1.6;margin-top:16px}
 
 /* ---------- clarity banner ---------- */
 .clarity{
-  margin-top:26px;border:1px solid var(--line);border-radius:14px;padding:34px 38px;
-  display:flex;justify-content:space-between;align-items:center;gap:28px;
-  background:
-    radial-gradient(600px 200px at 90% 50%,rgba(141,67,255,.12),transparent 70%),
-    linear-gradient(90deg,rgba(255,255,255,.025),rgba(141,67,255,.05));
-  position:relative;overflow:hidden;
+  margin-top:30px;border:1px solid var(--line);border-radius:16px;padding:26px 24px;position:relative;overflow:hidden;
+  background:radial-gradient(500px 180px at 95% 50%,rgba(141,67,255,.12),transparent 70%),linear-gradient(90deg,rgba(255,255,255,.025),rgba(141,67,255,.05));
 }
-.clarity::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--purple),var(--purple2));border-radius:4px}
-.clarity strong{font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);font-weight:600;line-height:1.2;max-width:520px}
+.clarity::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--purple),var(--purple2))}
+.clarity strong{font-family:var(--serif);font-size:clamp(26px,6.4vw,38px);font-weight:600;line-height:1.2;display:block}
 .clarity strong em{font-style:italic;color:var(--purple)}
-.clarity p{max-width:480px;margin:0;color:var(--muted);line-height:1.65;font-size:16px}
+.clarity p{margin:12px 0 0;color:var(--muted);line-height:1.65;font-size:15.5px}
 
-/* ---------- socials + about ---------- */
-.social-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:stretch}
-.social-copy{padding:56px 8px 56px 0;display:flex;flex-direction:column;justify-content:center}
-.social-copy h2{font-family:var(--serif);font-size:clamp(40px,4.6vw,60px);font-weight:600;line-height:1.06;margin:16px 0}
-.social-copy h2 em{font-style:italic;color:var(--purple)}
-.social-copy p{font-size:17.5px;line-height:1.72;color:#cfc7d5;max-width:600px;margin:0}
-.social-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+/* ---------- link cards ---------- */
+.lgrid{display:grid;gap:14px;margin-top:24px}
+.lcard{
+  display:flex;align-items:center;gap:16px;min-height:76px;
+  border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#0b0c13;
+}
+.lcard .lt{flex:1}
+.lcard small{color:var(--purple);letter-spacing:.22em;text-transform:uppercase;font-weight:700;font-size:10.5px;display:block}
+.lcard b{font-family:var(--serif);font-size:22px;font-weight:600;display:block;margin-top:3px;line-height:1.2}
+.lcard .arrow{flex:none;width:44px;height:44px;border:1px solid rgba(207,76,255,.55);border-radius:50%;display:grid;place-items:center;color:var(--purple);font-size:19px;background:rgba(207,76,255,.05)}
+
+/* ---------- spotlight / panels ---------- */
+.panel{
+  border:1px solid var(--line);border-radius:18px;padding:26px 22px;margin-top:24px;
+  background:linear-gradient(160deg,rgba(141,67,255,.09),rgba(207,76,255,.02) 60%,transparent);
+}
+.panel h3{font-family:var(--serif);font-weight:600;font-size:clamp(25px,6vw,34px);margin:10px 0 10px;line-height:1.2}
+.panel h3 em{font-style:italic;color:var(--purple)}
+.panel p{color:var(--muted);margin:0 0 14px;line-height:1.65}
+.panel ul{margin:0 0 20px;padding-left:20px;color:var(--muted);line-height:1.7}
+.panel li{margin:5px 0}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0 20px}
+.photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.btn-row{display:grid;gap:12px}
+
+/* ---------- socials ---------- */
+.social-links{display:grid;gap:12px;margin-top:22px}
 .social-links a{
-  border:1px solid var(--line);background:#0b0c13;padding:14px 20px;border-radius:11px;font-weight:600;font-size:14px;
-  display:inline-flex;align-items:center;gap:10px;transition:.22s ease;
+  display:flex;align-items:center;gap:12px;min-height:58px;
+  border:1px solid var(--line);background:#0b0c13;padding:14px 18px;border-radius:12px;font-weight:600;font-size:16px;
 }
-.social-links a .dot{width:8px;height:8px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple)}
-.social-links a:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.social-links .dot{width:9px;height:9px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple);flex:none}
+.social-links .handle{margin-left:auto;color:var(--faint);font-size:14px;font-weight:500}
+
+/* ---------- about ---------- */
 .about-card{
-  position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;min-height:460px;
-  display:flex;align-items:flex-end;
-  background:
-    linear-gradient(180deg,rgba(7,8,13,.25) 0%,rgba(7,8,13,.88) 78%),
-    url("assets/concepts-art.webp") center/cover;
+  border:1px dashed rgba(207,76,255,.55);border-radius:18px;padding:28px 24px;margin-top:24px;
+  background:rgba(141,67,255,.05);text-align:left;
 }
-.about-card::before,.about-card::after{content:"";position:absolute;width:72px;height:72px;z-index:2;opacity:.8}
-.about-card::before{top:20px;left:20px;border-top:1px solid #8a6f96;border-left:1px solid #8a6f96;border-top-left-radius:6px}
-.about-card::after{bottom:20px;right:20px;border-bottom:1px solid #8a6f96;border-right:1px solid #8a6f96;border-bottom-right-radius:6px}
-.about-inner{padding:34px;position:relative;z-index:1}
-.about-inner .eyebrow{margin-bottom:10px}
-.about-inner h3{font-family:var(--serif);font-size:34px;font-weight:600;margin:0 0 10px}
-.about-inner p{color:#bdb4c4;line-height:1.7;margin:0;max-width:420px;font-size:15.5px}
+.about-photo{
+  border:1px dashed var(--line);border-radius:14px;min-height:190px;display:flex;align-items:center;justify-content:center;
+  color:var(--faint);font-size:14px;letter-spacing:.06em;background:rgba(8,9,14,.5);margin-bottom:20px;text-align:center;padding:16px;
+}
+.about-card h3{font-family:var(--serif);font-size:30px;font-weight:600;margin:10px 0}
+.about-card p{color:var(--muted);line-height:1.7;margin:0 0 12px}
+.about-card p.placeholder-copy{color:#d8cfe2;font-style:italic}
 
 /* ---------- footer ---------- */
-footer{margin-top:56px;border-top:1px solid rgba(207,76,255,.18);padding:34px 0 40px;color:#9c95a4;background:rgba(6,7,11,.6)}
-.footer-row{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:center}
-.footer-motto{letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600}
-.footer-note{font-size:12.5px;color:var(--faint);margin-top:10px}
+footer{margin-top:48px;border-top:1px solid rgba(207,76,255,.18);padding:28px 0 10px;color:#9c95a4;background:rgba(6,7,11,.6)}
+.footer-motto{letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;margin-top:8px}
+.footer-note{font-size:12.5px;color:var(--faint);margin-top:10px;line-height:1.6}
 
-/* ---------- modal ---------- */
-.modal{position:fixed;inset:0;background:rgba(2,3,6,.78);backdrop-filter:blur(6px);display:none;place-items:center;z-index:80;padding:22px}
-.modal.show{display:grid;animation:fadeIn .25s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-box{
-  width:min(640px,94vw);background:linear-gradient(180deg,#111320,#0b0c12);
-  border:1px solid #5c3b70;border-radius:16px;padding:38px;
-  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(207,76,255,.15);
-  animation:pop .3s ease;max-height:86vh;overflow:auto;
+/* ---------- sticky tap bar (the mobile fix) ---------- */
+.tapbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  background:rgba(9,10,16,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(207,76,255,.3);
+  padding-bottom:env(safe-area-inset-bottom);
 }
-@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}to{transform:none;opacity:1}}
-.modal-box h3{font-family:var(--serif);font-size:36px;font-weight:600;margin:0 0 14px;line-height:1.15}
-.modal-box h3 em{font-style:italic;color:var(--purple)}
-.modal-box p{color:#c4bacd;line-height:1.7;font-size:16px}
-.modal-tags{margin-top:20px}
-.close{
-  float:right;background:rgba(207,76,255,.07);border:1px solid var(--line);color:var(--text);
-  width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1;transition:.2s;
+.tapbar a{
+  min-height:var(--tapbar);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#d9d2de;
 }
-.close:hover{border-color:var(--purple);color:var(--purple)}
-.tag{display:inline-block;border:1px solid var(--line);padding:8px 12px;margin:5px 6px 0 0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#bfb5c7;border-radius:7px}
+.tapbar a .ic{font-size:19px;line-height:1;color:var(--purple)}
+.tapbar a.mid{background:linear-gradient(180deg,rgba(141,67,255,.28),rgba(141,67,255,.10));color:#fff}
 
-/* ---------- centerpieces ---------- */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.spot{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:.25s ease}
-.spot:hover{transform:translateY(-6px);border-color:#8a4aa8;box-shadow:0 22px 44px rgba(0,0,0,.45),0 0 0 1px rgba(207,76,255,.25)}
-.spotimg{height:340px;background-position:center;background-size:cover;position:relative}
-.spotimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,9,14,.55))}
-.spotbody{padding:28px;display:flex;flex-direction:column;flex:1;gap:10px}
-.spotbody small{color:var(--purple);letter-spacing:.26em;text-transform:uppercase;font-weight:700;font-size:11px}
-.spotbody h3{font-family:var(--serif);font-size:32px;font-weight:600;margin:0;line-height:1.15}
-.spotbody p{color:var(--muted);line-height:1.6;font-size:15px;margin:0}
-.spotbody .btn{margin-top:14px;align-self:flex-start}
+/* ---------- desktop widening ---------- */
+@media(min-width:760px){
+  .hero-cta{grid-template-columns:auto auto;justify-content:start}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .lgrid{grid-template-columns:1fr 1fr}
+  .photos{grid-template-columns:repeat(4,1fr)}
+  .btn-row{grid-template-columns:auto auto;justify-content:start}
+  .social-links{grid-template-columns:1fr 1fr}
+}
+@media(min-width:1020px){
+  .navlinks{display:flex;align-items:center;gap:24px}
+  .navlinks a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#d9d2de}
+  .start-mini{display:none}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}
+  .hero-img img{height:520px}
+  .tapbar{display:none}
+  body{padding-bottom:24px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-/* ---------- responsive ---------- */
-@media(max-width:1020px){
-  .cards{grid-template-columns:1fr 1fr}
-  .social-wrap{grid-template-columns:1fr}
-  .about-card{min-height:380px}
-}
-@media(max-width:900px){
-  .navlinks{
-    display:none;position:absolute;top:74px;left:0;right:0;background:rgba(9,10,15,.98);
-    border-bottom:1px solid var(--line);padding:20px 4vw 26px;flex-direction:column;align-items:flex-start;gap:18px;
-  }
-  .navlinks.open{display:flex}
-  .mobile{display:block}
-  .hero-shell{grid-template-columns:1fr;min-height:0;background:linear-gradient(rgba(6,7,12,.82),rgba(6,7,12,.94)),url("assets/hero-skull-raven.webp") center 30%/cover no-repeat}
-  .hero-copy{padding:52px 30px 8px}
-  .how{margin:26px 30px 50px;padding-left:26px}
-  .clarity{flex-direction:column;align-items:flex-start}
-}
-@media(max-width:600px){
-  .cards{grid-template-columns:1fr}
-  .duo{grid-template-columns:1fr}
-  .spotimg{height:260px}
-  .logo{font-size:20px}
-  .hero-copy{padding:44px 24px 6px}
-  .how{margin:22px 24px 44px}
-  .clarity{padding:28px 26px}
-  .social-copy{padding:40px 0}
-  .modal-box{padding:28px 24px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none !important;transition:none !important}
-  .reveal{opacity:1;transform:none}
-  html{scroll-behavior:auto}
-}
-.collab-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;margin-top:34px}
-@media(max-width:900px){.collab-grid{grid-template-columns:1fr}}
-.collab-panel{border:1px solid var(--line);border-radius:20px;padding:34px 30px;background:linear-gradient(160deg,rgba(141,67,255,.08),rgba(207,76,255,.02) 60%,transparent);position:relative;overflow:hidden}
-.collab-panel .eyebrow{margin-bottom:10px}
-.collab-panel h3{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,30px);margin:0 0 12px;line-height:1.25}
-.collab-panel h3 em{font-style:italic;color:var(--purple)}
-.collab-panel p{color:var(--muted);margin:0 0 14px;line-height:1.65}
-.collab-panel ul{margin:0 0 22px;padding-left:22px;color:var(--muted);line-height:1.7}
-.collab-panel li{margin:6px 0}
-.collab-panel .btn-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.collab-note{font-size:13px;color:var(--muted)}
-.collab-soon{border-style:dashed;display:flex;flex-direction:column;justify-content:center}
-.soon-pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:14px;width:fit-content}
-.artist-spotlight{border:1px solid var(--line);border-radius:20px;padding:34px 30px;background:linear-gradient(160deg,rgba(141,67,255,.10),rgba(207,76,255,.03) 60%,transparent);margin-top:34px;position:relative;overflow:hidden}
-.artist-spotlight .eyebrow{margin-bottom:10px}
-.artist-spotlight h3{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,34px);margin:0 0 12px;line-height:1.25}
-.artist-spotlight h3 em{font-style:italic;color:var(--purple)}
-.artist-spotlight p{color:var(--muted);margin:0 0 18px;line-height:1.65;max-width:62ch}
-.artist-photos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 22px}
-@media(max-width:900px){.artist-photos{grid-template-columns:repeat(2,1fr)}}
-.artist-photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--line);display:block}
-.artist-spotlight .btn-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-[hidden]{display:none!important}
-.gary-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
-@media(max-width:900px){.gary-grid{grid-template-columns:1fr}}
-.gary-copy p{color:var(--muted);line-height:1.65;margin:0 0 14px}
-.gary-copy ul{margin:0 0 22px;padding-left:22px;color:var(--muted);line-height:1.7}
-.gary-copy li{margin:6px 0}
-.gary-copy .btn-row{display:flex;gap:14px;flex-wrap:wrap}
-.gary-photos{display:grid;gap:14px;grid-template-columns:1fr 1fr}
-.gary-photos figure{margin:0}
-.gary-photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block}
-.img-slot{border:1px dashed var(--line);border-radius:14px;min-height:150px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;background:rgba(141,67,255,.04)}
+/* ---------- live-build additions ---------- */
+.pbody h3{font-family:'Pirata One','Cormorant Garamond',Georgia,serif;font-weight:400;font-size:30px;text-decoration:underline;text-decoration-color:#ffcf4c;text-decoration-thickness:2px;text-underline-offset:6px}
+.about-card{border-style:solid;border-color:var(--line);background:linear-gradient(160deg,rgba(141,67,255,.08),rgba(207,76,255,.02) 60%,transparent)}
+.photos figure{margin:0}
+
 </style>
 </head>
 <body>
-
-
-<header id="siteHeader">
-  <div class="container nav">
+<header>
+  <div class="wrap nav">
     <a class="logo" href="#top">EVAN B <span>ETCHEN</span></a>
-    <button class="mobile" id="menuBtn" aria-label="Open menu" aria-expanded="false">MENU</button>
-    <nav class="navlinks" id="navlinks" aria-label="Primary">
-      <a href="gallery.html">Shop</a>
-      <a href="#work">Work</a>
-      <a href="#concepts">Concepts</a>
-      <a href="#commissions">Commissions</a>
-      <a href="#collaborators">Collaborators</a>
-      <a href="#socials">Socials</a>
-      <a href="#about">About</a>
-      <a class="start" href="https://docs.google.com/forms/d/e/1FAIpQLSfwHfuWwVNz2WSQ_Mpv09-Nhz_xpu0sA3Efc9Q58y8PT0TSHA/viewform" target="_blank" rel="noopener">Start a Piece</a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="gallery.html">Shop</a><a href="#work">Work</a><a href="#collaborators">Collaborators</a><a href="#about">About</a><a href="#socials">Socials</a>
     </nav>
+    <a class="start-mini" href="https://docs.google.com/forms/d/e/1FAIpQLSfwHfuWwVNz2WSQ_Mpv09-Nhz_xpu0sA3Efc9Q58y8PT0TSHA/viewform" target="_blank" rel="noopener">Start a Piece</a>
   </div>
 </header>
 
 <main id="top">
-<section class="hero">
-  <div class="container">
-    <div class="hero-shell reveal">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-img">
+        <img src="assets/hero-skull-raven.webp" alt="Purple-lit hand-etched mirror: horned skull with a raven and roses">
+        <div class="hero-badge">Hand-etched &middot; One of a kind</div>
+      </div>
       <div class="hero-copy">
         <div class="eyebrow">Our Mark</div>
         <h1>Hand-etched glass, made <em>personal, bold, and impossible to mass-produce.</em></h1>
@@ -323,321 +240,225 @@ footer{margin-top:56px;border-top:1px solid rgba(207,76,255,.18);padding:34px 0 
           <a class="btn btn-solid" href="gallery.html">Shop the Pieces</a>
           <a class="btn btn-ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSfwHfuWwVNz2WSQ_Mpv09-Nhz_xpu0sA3Efc9Q58y8PT0TSHA/viewform" target="_blank" rel="noopener">Start a Piece</a>
         </div>
-      </div>
-      <div class="how">
-        <div class="eyebrow">How We Work</div>
-        <h2>There&rsquo;s always a way.</h2>
-        <p>If we can&rsquo;t go under it, and we can&rsquo;t go over it, <strong>we go through it.</strong> We adapt, solve the problem, and keep moving until we find the solution.</p>
-        <div class="motto"><b>Motto:</b> Etched to be different.</div>
+        <div class="how">
+          <div class="eyebrow">How We Work</div>
+          <h3>There&rsquo;s always a way.</h3>
+          <p>If we can&rsquo;t go under it, and we can&rsquo;t go over it, <strong>we go through it.</strong> We adapt, solve the problem, and keep moving until we find the solution.</p>
+          <div class="motto"><b>Motto:</b> Etched to be different.</div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<section class="section" id="featured">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Featured</div>
+  <section id="shop">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Shop</div>
         <h2>First come, <em>first gone.</em></h2>
+        <p>Every piece is one of one. When it sells, it&rsquo;s gone forever.</p>
       </div>
-      <p>Two finished pieces, priced to move at $150 each. One of one &mdash; when they&rsquo;re gone, they&rsquo;re gone.</p>
-    </div>
-    <div class="duo">
-      <article class="spot reveal">
-        <div class="spotimg" style="background-image:url('assets/gallery/garden-of-the-damned.webp')" role="img" aria-label="Skull entwined with a snake amid roses, hand-etched on a mirror"></div>
-        <div class="spotbody">
-          <small>$150 &mdash; One of one</small>
+      <div class="pgrid">
+      <article class="pcard">
+        <img src="assets/gallery/garden-of-the-damned.webp" alt="Skull entwined with a snake amid roses, hand-etched on a mirror" loading="lazy">
+        <div class="pbody">
+          <small>Featured &middot; One of one</small>
           <h3>Garden of the Damned</h3>
           <p>A human skull entwined with a snake amid roses &mdash; gothic symbolism meets Art Nouveau floral detail.</p>
-          <button class="btn btn-solid" data-piece="garden-of-the-damned">Buy now</button>
+          <div class="prow"><div class="price">$150<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="garden-of-the-damned">Buy now</button></div>
         </div>
       </article>
-      <article class="spot reveal">
-        <div class="spotimg" style="background-image:url('assets/gallery/danger-hidden-within.webp')" role="img" aria-label="Large etched flower with a spider hidden at its center"></div>
-        <div class="spotbody">
-          <small>$150 &mdash; One of one</small>
+      <article class="pcard">
+        <img src="assets/gallery/danger-hidden-within.webp" alt="Large etched flower with a spider hidden at its center" loading="lazy">
+        <div class="pbody">
+          <small>Featured &middot; One of one</small>
           <h3>The Danger Hidden Within</h3>
           <p>A detailed flower dominates the piece &mdash; look closer and a spider climbs at its center, hidden in web detailing.</p>
-          <button class="btn btn-solid" data-piece="danger-hidden-within">Buy now</button>
+          <div class="prow"><div class="price">$150<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="danger-hidden-within">Buy now</button></div>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="centerpieces">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Centerpieces</div>
-        <h2>Made to be <em>stared at.</em></h2>
-      </div>
-      <p>Two one-of-one statement pieces at $400 each. When one sells, it&rsquo;s gone forever.</p>
-    </div>
-    <div class="duo">
-      <article class="spot reveal">
-        <div class="spotimg" style="background-image:url('assets/hero-art.webp')" role="img" aria-label="Close-up of the purple-lit oni mask etching, A Vision of Fear"></div>
-        <div class="spotbody">
-          <small>$400 &mdash; One of one</small>
+      <article class="pcard">
+        <img src="assets/gallery/a-vision-of-fear.webp" alt="Horned oni mask wrapped in chrysanthemums, hand-etched and lit purple" loading="lazy">
+        <div class="pbody">
+          <small>Centerpiece &middot; One of one</small>
           <h3>A Vision of Fear</h3>
-          <p>A horned oni mask wrapped in chrysanthemums, hand-etched into glass and lit to glow purple.</p>
-          <button class="btn btn-solid" data-piece="vision-of-fear">Buy now</button>
+          <p>A horned oni mask wrapped in chrysanthemums, hand-etched and lit to glow.</p>
+          <div class="prow"><div class="price">$400<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="vision-of-fear">Buy now</button></div>
         </div>
       </article>
-      <article class="spot reveal">
-        <div class="spotimg" style="background-image:url('assets/gallery/flew-too-close.webp')" role="img" aria-label="Angel wings with gothic script etched on mirror"></div>
-        <div class="spotbody">
-          <small>$400 &mdash; One of one</small>
+      <article class="pcard">
+        <img src="assets/gallery/flew-too-close.webp" alt="Angel wings with gothic script etched on mirror" loading="lazy">
+        <div class="pbody">
+          <small>Centerpiece &middot; One of one</small>
           <h3>For I Flew Too Close to the Sun</h3>
           <p>Angel wings with gothic script, hand-etched. One of one.</p>
-          <button class="btn btn-solid" data-piece="too-close-to-the-sun">Buy now</button>
+          <div class="prow"><div class="price">$400<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="too-close-to-the-sun">Buy now</button></div>
         </div>
       </article>
+      <article class="pcard">
+        <img src="assets/gallery/fatal-attraction.webp" alt="Hand-etched moth mirror with wings spread" loading="lazy">
+        <div class="pbody">
+          <small>One of one</small>
+          <h3>A Fatal Attraction</h3>
+          <p>16&times;16 hand-etched moth mirror, wings spread. One of one.</p>
+          <div class="prow"><div class="price">$150<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="fatal-attraction">Buy now</button></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="assets/gallery/gothic-decore.webp" alt="Hand-etched gothic decor mirror with skull, horns and snake" loading="lazy">
+        <div class="pbody">
+          <small>One of one</small>
+          <h3>Hand-Etched 1 of 1 Gothic Decor</h3>
+          <p>Skull with horns and a snake, hand-etched in gothic detail. One of one.</p>
+          <div class="prow"><div class="price">$150<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="gothic-decor-1of1">Buy now</button></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="assets/gallery/spiderweb-pocket-mirror.webp" alt="Spiderweb hand-etched on a pocket mirror" loading="lazy">
+        <div class="pbody">
+          <small>Pocket mirror &middot; Shipping included</small>
+          <h3>Spiderweb Pocket Mirror</h3>
+          <p>A hand-etched spiderweb on a pocket mirror. Small, sharp, and ships free.</p>
+          <div class="prow"><div class="price">$17.50<small>USD</small></div><button class="btn btn-solid" type="button" data-piece="spiderweb-pocket-mirror">Buy now</button></div>
+        </div>
+      </article>
+      </div>
+      <p class="note-line">Buyers pay shipping on full-size pieces (flat $25 UPS Ground); the pocket mirror ships included. The full shop — including the newest pieces Evan adds himself — lives on the <a href="gallery.html" style="color:var(--purple);font-weight:600">Shop page</a>.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="work">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
         <div class="eyebrow">The Work</div>
         <h2>Crystal <em>clear.</em></h2>
+        <p>Finished pieces, works in progress, custom commissions — and everywhere else the work lives online.</p>
       </div>
-      <p>Finished pieces, works in progress, custom commissions — and everywhere else the work lives online.</p>
+      <div class="lgrid">
+        <a class="lcard" href="gallery.html"><span class="lt"><small>Work</small><b>Completed Pieces</b></span><span class="arrow">&rarr;</span></a>
+        <a class="lcard" href="concepts.html"><span class="lt"><small>Concepts</small><b>Ideas in Progress</b></span><span class="arrow">&rarr;</span></a>
+        <a class="lcard" id="custom" href="https://docs.google.com/forms/d/e/1FAIpQLSfwHfuWwVNz2WSQ_Mpv09-Nhz_xpu0sA3Efc9Q58y8PT0TSHA/viewform" target="_blank" rel="noopener"><span class="lt"><small>Commissions</small><b>Custom Work — Start a Piece</b></span><span class="arrow">&rarr;</span></a>
+        <a class="lcard" href="#socials"><span class="lt"><small>Socials</small><b>Find Evan B Etchen Everywhere</b></span><span class="arrow">&darr;</span></a>
+      </div>
+      <div class="clarity">
+        <strong>No smoke. No mirrors. <em>Just clarity from the start.</em></strong>
+        <p>Clear expectations, clear process, and a straightforward path from an idea to the finished piece.</p>
+      </div>
     </div>
-    <div class="cards">
-      <article class="card reveal" data-href="gallery.html" data-title="Completed Pieces" data-copy="Finished, original Evan B Etchen work — each piece one of a kind and for sale right here.">
-        <div class="cardimg" role="img" aria-label="Close-up of hand-etched mirror artwork"></div>
-        <div class="cardbody">
-          <small>Work</small><h3>Completed Pieces</h3><p>Explore original hand-etched glass artwork.</p><div class="arrow" aria-hidden="true">&rarr;</div>
-        </div>
-      </article>
+  </section>
 
-      <article class="card reveal" id="concepts" data-href="concepts.html" data-title="Concepts" data-copy="The Concepts area is where ideas take shape before they touch glass — sketches, stencils, and project breakdowns. Each concept gets a title, preview images, status, and downloadable detail sheets as the work develops.">
-        <div class="cardimg" role="img" aria-label="Etching design sketches and stencils on a workbench"></div>
-        <div class="cardbody">
-          <small>Concepts</small><h3>Ideas in Progress</h3><p>Browse concepts, sketches, and breakdowns.</p><div class="arrow" aria-hidden="true">&rarr;</div>
-        </div>
-      </article>
-
-      <article class="card reveal" id="commissions" data-href="https://docs.google.com/forms/d/e/1FAIpQLSfwHfuWwVNz2WSQ_Mpv09-Nhz_xpu0sA3Efc9Q58y8PT0TSHA/viewform" data-title="Got an idea? Let&rsquo;s put it in glass." data-copy="Send your references, tell me what you&rsquo;re imagining, and I&rsquo;ll personally build your quote.">
-        <div class="cardimg" role="img" aria-label="Hands etching glass with a rotary tool"></div>
-        <div class="cardbody">
-          <small>Commissions</small><h3>Custom Work</h3><p>Got an idea? Let&rsquo;s put it in glass.</p><div class="arrow" aria-hidden="true">&rarr;</div>
-        </div>
-      </article>
-
-      <article class="card reveal" data-title="Socials" data-copy="The day-to-day lives on social: the build, the mistakes, behind-the-scenes clips, new concepts, and whatever side quest happens next. Scroll down or tap to jump there.">
-        <div class="cardimg" role="img" aria-label="Pair of hummingbirds hand-etched on a framed mirror"></div>
-        <div class="cardbody">
-          <small>Socials</small><h3>Find Evan B Etchen Everywhere</h3><p>Finished pieces are only part of it.</p><div class="arrow" aria-hidden="true">&darr;</div>
-        </div>
-      </article>
-    </div>
-
-    <div class="clarity reveal">
-      <strong>No smoke. No mirrors. <em>Just clarity from the start.</em></strong>
-      <p>Clear expectations, clear process, and a straightforward path from an idea to the finished piece.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="collaborators">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
+  <section id="collaborators">
+    <div class="wrap">
+      <div class="sec-head">
         <div class="eyebrow">Collaborators</div>
         <h2>Stronger <em>together.</em></h2>
+        <p>Evan B Etchen is bigger than one studio. Local artists, craftspeople &mdash; and what&rsquo;s coming next.</p>
       </div>
-      <p>Evan B Etchen is bigger than one studio. Local artists, craftspeople &mdash; and what&rsquo;s coming next.</p>
-    </div>
-    <article class="artist-spotlight reveal">
-      <div class="eyebrow">This month&rsquo;s featured artist</div>
-      <h3>Stabby <em>Tabby's Creations.</em></h3>
-      <p>Bone and oddity art &mdash; skulls, insects, and crystals set in glass. Our first featured artist, hand-picked by Evan.</p>
-      <div class="artist-photos">
-        <img src="assets/featured/stabby-1.webp" alt="Bee preserved in a glass vial with moss and crystal by Stabby Tabby's Creations" loading="lazy">
-        <img src="assets/featured/stabby-2.webp" alt="Animal skull in a lit glass globe with moss and crystals by Stabby Tabby's Creations" loading="lazy">
-        <img src="assets/featured/stabby-3.webp" alt="Whip spider specimen art on a pink plaque with moss by Stabby Tabby's Creations" loading="lazy">
-        <img src="assets/featured/stabby-4.webp" alt="Framed skull with moss, crystals and butterflies by Stabby Tabby's Creations" loading="lazy">
-      </div>
-      <div class="btn-row">
-        <a class="btn btn-solid" href="https://www.instagram.com/stabbytabbycreations" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn btn-ghost" href="https://www.facebook.com/StabbyTabbyCreations" target="_blank" rel="noopener">Facebook</a>
-      </div>
-    </article>
-    <div class="collab-grid">
-      <article class="collab-panel reveal">
+      <article class="panel">
+        <div class="eyebrow">This month&rsquo;s featured artist</div>
+        <h3>Stabby <em>Tabby&rsquo;s Creations.</em></h3>
+        <p>Bone and oddity art — skulls, insects, and crystals set in glass. Our first featured artist, hand-picked by Evan.</p>
+        <div class="photos">
+          <img src="assets/featured/stabby-1.webp" alt="Bee preserved in a glass vial with moss and crystal by Stabby Tabby's Creations" loading="lazy">
+          <img src="assets/featured/stabby-2.webp" alt="Animal skull in a lit glass globe with moss and crystals by Stabby Tabby's Creations" loading="lazy">
+          <img src="assets/featured/stabby-3.webp" alt="Whip spider specimen art on a pink plaque with moss by Stabby Tabby's Creations" loading="lazy">
+          <img src="assets/featured/stabby-4.webp" alt="Framed skull with moss, crystals and butterflies by Stabby Tabby's Creations" loading="lazy">
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-solid" href="https://www.instagram.com/stabbytabbycreations" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn btn-ghost" href="https://www.facebook.com/StabbyTabbyCreations" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </article>
+      <article class="panel">
         <div class="eyebrow">Featured Artists</div>
         <h3>Your work, <em>on this wall.</em></h3>
-        <p>We&rsquo;re opening the site to Michigan artists making original work &mdash; any medium. Painters, photographers, sculptors, makers. Rotating features with your name, your story, and your links. Evan personally selects each featured artist &mdash; no fees, no commission, just the spotlight.</p>
+        <p>We&rsquo;re opening the site to Michigan artists making original work — any medium. Painters, photographers, sculptors, makers. Rotating features with your name, your story, and your links. Evan personally selects each featured artist — no fees, no commission, just the spotlight.</p>
         <ul>
           <li>Original work only</li>
           <li>Any medium welcome</li>
           <li>Michigan artists</li>
         </ul>
         <div class="btn-row">
-          <!-- TODO: swap this mailto for a Google Form link when Evan creates one -->
           <a class="btn btn-solid" href="mailto:Son.ofaetch@evanbetchen.com?subject=Featured%20Artist%20Application&body=Artist%20name%3A%0A%0AWhat%20you%20make%20(medium)%3A%0A%0AWhere%20you%27re%20based%3A%0A%0APortfolio%20link%20(Instagram%2Fwebsite)%3A%0A%0AWhy%20do%20you%20want%20to%20be%20featured%20on%20Evan%20B%20Etchen%3A%0A">Apply to be featured</a>
-          <span class="collab-note">Takes two minutes &mdash; just email us your info.</span>
         </div>
+        <p class="note-line">Takes two minutes — just email us your info.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-  GARY SECTION — HIDDEN UNTIL LAUNCH-READY (locked w/ Remy 9/30)
-  To publish: remove the word "hidden" from the <section> tag,
-  swap the img-slot divs for real photos, then delete the
-  "coming soon" teaser panel in the Collaborators section above.
-  Do NOT add pricing, turnaround times, frame menus, or payment terms.
-============================================================ -->
-<section class="section" id="gary">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
+      <article class="panel">
         <div class="eyebrow">Collaborator</div>
-        <h2>Woodworking <em>by Gary.</em></h2>
-      </div>
-      <p>Custom frames and hand-built woodwork, made for Evan B Etchen pieces.</p>
-    </div>
-    <div class="gary-grid">
-      <div class="gary-copy reveal">
-        <p>Every etched piece deserves a frame built for it. Gary &mdash; Evan&rsquo;s friend and collaborator &mdash; builds custom wood frames and woodwork made specifically for Evan B Etchen glass and mirrors.</p>
+        <h3>Woodworking <em>by Gary.</em></h3>
+        <p>Custom frames and hand-built woodwork, made for Evan B Etchen pieces. Every etched piece deserves a frame built for it — Gary builds custom wood frames made specifically for Evan B Etchen glass and mirrors.</p>
         <ul>
-          <li>He builds it, Evan etches it &mdash; one finished piece, two craftsmen</li>
+          <li>He builds it, Evan etches it — one finished piece, two craftsmen</li>
           <li>Frames built for your piece, not pulled off a shelf</li>
           <li>Real wood, hand-built, designed around the etching</li>
         </ul>
+        <div class="photos">
+          <figure><img src="assets/gary/gary-02.jpg" alt="Dinosaur skull mounted on a wood plaque with lights" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-03.jpg" alt="Hand-built wooden bookshelf" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-04.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-05.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-06.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-07.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-08.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-09.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-10.jpg" alt="Gary woodworking" loading="lazy"></figure>
+          <figure><img src="assets/gary/gary-11.jpg" alt="Gary woodworking" loading="lazy"></figure>
+        </div>
         <div class="btn-row">
-          <!-- TODO: point at the framed-piece inquiry path when Gary goes live -->
           <a class="btn btn-solid" href="mailto:evan@evanbetchen.com?subject=Framed%20custom%20piece%20inquiry">Ask about a framed piece</a>
         </div>
-      </div>
-      <div class="gary-photos reveal">
-        <figure><img src="assets/gary/gary-02.jpg" alt="Dinosaur skull mounted on a wood plaque with lights" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-03.jpg" alt="Hand-built wooden bookshelf" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-04.jpg" alt="Hand-carved wooden bowl" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-05.jpg" alt="Hexagonal wooden bud vase holding wildflowers" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-06.jpg" alt="Tree-stump candle holder with carved flame" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-07.jpg" alt="Wooden earrings with pine tree design" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-08.jpg" alt="Driftwood wall rack with mushroom hooks" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-09.jpg" alt="Hand-carved wooden shark" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-10.jpg" alt="Gary woodworking" loading="lazy"></figure>
-        <figure><img src="assets/gary/gary-11.jpg" alt="Gary woodworking" loading="lazy"></figure>
-      </div>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="socials">
-  <div class="container social-wrap">
-    <div class="social-copy reveal">
-      <div class="eyebrow">Socials</div>
-      <h2>Find Evan B Etchen <em>everywhere.</em></h2>
-      <p>Finished pieces are only part of it. The build, the mistakes, behind-the-scenes clips, new concepts, and whatever side quest happens next — it all lives here first.</p>
-      <div class="social-links">
-        <a target="_blank" rel="noopener" href="https://www.instagram.com/evanbetchen"><span class="dot"></span>Instagram</a>
-        <a target="_blank" rel="noopener" href="https://www.facebook.com/share/14u8dhRN6o6/"><span class="dot"></span>Facebook</a>
-        <a target="_blank" rel="noopener" href="https://www.tiktok.com/@evanbetchen"><span class="dot"></span>TikTok</a>
-        <a target="_blank" rel="noopener" href="https://youtube.com/@evanbetchen"><span class="dot"></span>YouTube</a>
-      </div>
-    </div>
-
-    <div class="about-card reveal" id="about">
-      <div class="about-inner">
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
         <div class="eyebrow">About</div>
+        <h2>About <em>me.</em></h2>
+      </div>
+      <div class="about-card">
+        <div class="eyebrow">About Evan</div>
         <h3>The story, coming soon.</h3>
         <p>Photos and the full story are intentionally left open for now — this space is reserved for whatever Evan decides he wants the world to know.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section id="socials">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Socials</div>
+        <h2>Find Evan B Etchen <em>everywhere.</em></h2>
+        <p>Finished pieces are only part of it. The build, the mistakes, behind-the-scenes clips, new concepts, and whatever side quest happens next — it all lives here first.</p>
+      </div>
+      <div class="social-links">
+        <a target="_blank" rel="noopener" href="https://www.instagram.com/evanbetchen"><span class="dot"></span>Instagram<span class="handle">@evanbetchen</span></a>
+        <a target="_blank" rel="noopener" href="https://www.facebook.com/share/14u8dhRN6o6/"><span class="dot"></span>Facebook<span class="handle">Evan B Etchen</span></a>
+        <a target="_blank" rel="noopener" href="https://www.tiktok.com/@evanbetchen"><span class="dot"></span>TikTok<span class="handle">@evanbetchen</span></a>
+        <a target="_blank" rel="noopener" href="https://youtube.com/@evanbetchen"><span class="dot"></span>YouTube<span class="handle">@evanbetchen</span></a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <div class="container">
-    <div class="footer-row">
-      <div class="logo">EVAN B <span>ETCHEN</span></div>
-      <div class="footer-motto">Etched to be different.</div>
-    </div>
+  <div class="wrap">
+    <div class="logo">EVAN B <span>ETCHEN</span></div>
+    <div class="footer-motto">Etched to be different.</div>
     <div class="footer-note">&copy; <span id="year">2026</span> Evan B Etchen. All artwork original and hand-etched.</div>
   </div>
 </footer>
 
-<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box">
-    <button class="close" id="closeModal" aria-label="Close">&times;</button>
-    <h3 id="modalTitle"></h3>
-    <p id="modalCopy"></p>
-    <div class="modal-tags">
-      <span class="tag">Hand-etched</span>
-      <span class="tag">One of a kind</span>
-    </div>
-  </div>
-</div>
+<nav class="tapbar" aria-label="Quick actions">
+  <a href="gallery.html"><span class="ic">&#9634;</span>Shop</a>
+  <a class="mid" href="https://docs.google.com/forms/d/e/1FAIpQLSfwHfuWwVNz2WSQ_Mpv09-Nhz_xpu0sA3Efc9Q58y8PT0TSHA/viewform" target="_blank" rel="noopener"><span class="ic">&#9998;</span>Start a Piece</a>
+  <a href="#socials"><span class="ic">&#9679;</span>Socials</a>
+</nav>
 
 <script>
-(function(){
-  document.documentElement.classList.add('js');
-  var header=document.getElementById('siteHeader');
-  addEventListener('scroll',function(){header.classList.toggle('scrolled',scrollY>8)},{passive:true});
-
-  var menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('navlinks');
-  menuBtn.addEventListener('click',function(){
-    var open=nav.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded',open?'true':'false');
-    menuBtn.textContent=open?'CLOSE':'MENU';
-  });
-  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
-    nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='MENU';
-  })});
-
-  var modal=document.getElementById('modal'),
-      mTitle=document.getElementById('modalTitle'),
-      mCopy=document.getElementById('modalCopy');
-  document.querySelectorAll('.card').forEach(function(card){
-    card.addEventListener('click',function(){
-      if(card.dataset.href){
-        var u=card.dataset.href;
-        if(/^https?:/i.test(u)){window.open(u,'_blank','noopener');}else{location.href=u;}
-        return;
-      }
-      if(card.querySelector('small').textContent.trim()==='Socials'){
-        document.getElementById('socials').scrollIntoView({behavior:'smooth'});
-        return;
-      }
-      mTitle.textContent=card.dataset.title;
-      mCopy.textContent=card.dataset.copy;
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    });
-  });
-  function closeModal(){
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
-  }
-  document.getElementById('closeModal').addEventListener('click',closeModal);
-  modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-  setTimeout(function(){
-    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){el.classList.add('in')});
-  },2500);
-
-  document.getElementById('year').textContent=new Date().getFullYear();
-})();
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dfc3d78e62094555978064a7902220e3"}'></script><!-- End Cloudflare Web Analytics -->
 <script src="assets/referral.js"></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dfc3d78e62094555978064a7902220e3"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
